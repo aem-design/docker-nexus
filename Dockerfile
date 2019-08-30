@@ -1,9 +1,13 @@
-FROM        aemdesign/oracle-jdk:latest
+FROM        aemdesign/oracle-jdk:1.0-jdk8
 
 MAINTAINER  devops <devops@aem.design>
 
-LABEL   os.version="centos" \
-        container.description="docker nexus oss container"
+LABEL   os="centos" \
+        container.description="docker nexus oss container" \
+        version="1.0.0" \
+        imagename="nexus" \
+        test.command=" java -version 2>&1 | grep 'java version' | sed -e 's/.*java version "\(.*\)".*/\1/'" \
+        test.command.verify="1.8"
 
 ARG NEXUS_VERSION="3.13.0-01"
 ARG NEXUS_MAJORVERSION="3"
@@ -18,7 +22,7 @@ ENV \
     NEXUS_DATA="/nexus-data" \
     SONATYPE_WORK="/opt/sonatype/sonatype-work" \
     CONTEXT_PATH="/" \
-    NEXUS_PORT="8081" \
+    NEXUS_PORT="8080" \
     CONTAINER_USER="nexus" \
     CONTAINER_USERID="10002" \
     CONTAINER_GUID="10002" \
@@ -42,13 +46,13 @@ RUN \
         -e "s|java.io.tmpdir=data/tmp|java.io.tmpdir=${NEXUS_DATA}/tmp|g" \
         -i ${NEXUS_HOME}/bin/nexus.vmoptions && \
     sed \
-        -e "s|application-port=8081|application-port=${NEXUS_PORT}|g" \
+        -e "s|application-port=8080|application-port=${NEXUS_PORT}|g" \
         -e "s|nexus-context-path=/|nexus-context-path=${CONTEXT_PATH}|g" \
         -i ${NEXUS_HOME}/etc/nexus-default.properties
 
 VOLUME ${NEXUS_DATA}
 
-EXPOSE 8081 5000
+EXPOSE 8080 5000
 
 WORKDIR ${NEXUS_HOME}
 
