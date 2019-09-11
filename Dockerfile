@@ -45,6 +45,7 @@ RUN \
         -e "s|java.io.tmpdir=data/tmp|java.io.tmpdir=${NEXUS_DATA}/tmp|g" \
         -i ${NEXUS_HOME}/bin/nexus.vmoptions && \
     sed \
+        -e "s|application-port=8081|application-port=8080|g" \
         -e "s|nexus-context-path=/|nexus-context-path=${CONTEXT_PATH}|g" \
         -i ${NEXUS_HOME}/etc/nexus-default.properties
 
