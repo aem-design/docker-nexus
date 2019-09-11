@@ -17,3 +17,12 @@ Following is the list of packages included
 
 * nexus                 - for storing artifacts
 
+### Starting
+
+To start local Nexus instance on port 8081
+
+```bash
+docker run --name nexus \
+-p8081:8080 -d \
+aemdesign/nexus:latest
+``` 
