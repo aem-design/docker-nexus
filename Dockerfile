@@ -9,7 +9,7 @@ LABEL   os="centos" \
         test.command=" java -version 2>&1 | grep 'java version' | sed -e 's/.*java version "\(.*\)".*/\1/'" \
         test.command.verify="1.8"
 
-ARG NEXUS_VERSION="3.13.0-01"
+ARG NEXUS_VERSION="3.18.1-01"
 ARG NEXUS_MAJORVERSION="3"
 ARG NEXUS_DOWNLOAD_URL="https://download.sonatype.com/nexus/${NEXUS_MAJORVERSION}/nexus-${NEXUS_VERSION}-unix.tar.gz"
 
@@ -22,7 +22,6 @@ ENV \
     NEXUS_DATA="/nexus-data" \
     SONATYPE_WORK="/opt/sonatype/sonatype-work" \
     CONTEXT_PATH="/" \
-    NEXUS_PORT="8080" \
     CONTAINER_USER="nexus" \
     CONTAINER_USERID="10002" \
     CONTAINER_GUID="10002" \
@@ -46,7 +45,6 @@ RUN \
         -e "s|java.io.tmpdir=data/tmp|java.io.tmpdir=${NEXUS_DATA}/tmp|g" \
         -i ${NEXUS_HOME}/bin/nexus.vmoptions && \
     sed \
-        -e "s|application-port=8080|application-port=${NEXUS_PORT}|g" \
         -e "s|nexus-context-path=/|nexus-context-path=${CONTEXT_PATH}|g" \
         -i ${NEXUS_HOME}/etc/nexus-default.properties
 
