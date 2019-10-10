@@ -1,6 +1,6 @@
 ## CentOS 7 with Nexus
 
-[![build_status](https://travis-ci.org/aem-design/nexus.svg?branch=master)](https://travis-ci.org/aem-design/nexus) 
+[![build_status](https://travis-ci.org/aem-design/docker-nexus.svg?branch=master)](https://travis-ci.org/aem-design/docker-nexus) 
 [![github license](https://img.shields.io/github/license/aem-design/nexus)](https://github.com/aem-design/nexus) 
 [![github issues](https://img.shields.io/github/issues/aem-design/nexus)](https://github.com/aem-design/nexus) 
 [![github last commit](https://img.shields.io/github/last-commit/aem-design/nexus)](https://github.com/aem-design/nexus) 
